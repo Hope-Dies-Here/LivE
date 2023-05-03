@@ -1,0 +1,25 @@
+<div id="rev-container">
+  
+  <div id="list">
+    <h3 id="revTitle">The List My Friend (<%= db.length %>)</h3>
+    <ul id="reviewUl">
+      <% db.forEach(data => { %>
+        <li id="revLi">
+          <a id="reviewLink" href="<%= data.challengeLink %>">
+            <%=data.challengeName%> 
+          </a>
+          <% if(data.owner.username === uname) { %>
+            <a id="linkOwner" href="/challenges/edit/<%= data._id %>">Edit</a>
+          <% } else { %>
+            <a id="linkOwner" href="/owners/<%= data.owner.username %>">
+              By <%=data.owner.username%> 
+            </a>
+          <% } %>
+      </li>
+      <% }) %>
+    </ul>
+  <div style="width: fit-content; margin: auto">
+    <= 1 2 3 4 5 =>
+  </div>
+  </div>
+</div>

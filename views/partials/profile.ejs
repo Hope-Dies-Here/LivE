@@ -1,0 +1,49 @@
+<div id="profContainer">
+  <div id="userImgCont">
+    <img src="/img/user.svg" width="80px"/>
+    <h1>
+      <%= name %>
+    </h1>
+    <% if(request == "direct") { %>
+      <p>edit</p>
+    <% }  %>
+  </div>
+  <% if(request == "alt") { %>
+      
+  <% }  %>
+  <div id="profileBottom">
+    <div id="profileAbout">
+      <h3>
+        About <%= name %>
+      </h3>
+      <ul>
+        <li>
+          Full Name: User of Demo
+        </li>
+        <li>
+          Nick Name: User
+        </li>
+        <li>
+          Rating: 4.8
+        </li>
+        <li>
+          Description: tempor deserunt veniam incididunt consequat nisi sit quis ut fugiat
+        </li>
+      </ul>
+    </div>
+    <div id="submitedChallenges">
+      <h3>
+        Projects
+      </h3>
+      <ul>
+        <% db.forEach(data => { %>
+          <li> 
+            <a href='#' >
+              <%= data.challengeName %> 
+            </a>
+          </li>
+        <% }) %>
+      </ul>
+    </div>
+  </div>
+</div>

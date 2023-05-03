@@ -1,0 +1,438 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+
+
+body {
+  font-family: "Quicksand", sans-serif;
+  border: 1px solid gray;
+  /* height: 780px; */
+  margin: 0;
+  padding: 60px 30px;
+  background-color: rgb(206, 206, 206);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+}
+.gandalf{
+ 
+}
+#youShallNotPass{
+  display: none;
+  margin: 20px 0 10px 0;
+  align-items: center;
+  justify-content: center;
+}
+
+#youShallNotPass img{
+  width: 30px;
+}
+
+.bdy {
+background-image: linear-gradient(12deg, #4d5dfb 31%, #08c8f6 70%);
+  background-size: 400% 200%;
+  height: 550px;
+  width: 1100px;
+  padding-bottom: 30px;
+  border-radius: 6px;
+  box-shadow: 0px 6px 16px rgba(95, 111, 233, 0.8);
+  transition: .5s;
+  aanimation: eg 1.5s ease ;
+  /* animation: thoo 12s ease infinite; */
+}
+
+@keyframes eg {
+  0% {
+    opacity: 0;
+    transform: translateY(-1000px);
+  }
+  100% {
+    transformm: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes thoo {
+  33%{
+    transform: translateY(20px);
+  }
+  66%{
+    transform: translateX(20px);
+  }
+  
+}
+
+
+p {
+  padding: 0;
+  margin: 0;
+}
+
+#form {
+  border: 1px solid red;
+  display: grid;
+  grid-template-columns: 0.5fr 0.5fr;
+  width: 300px;
+  gap: 10px;
+  padding: 20px 15px;
+  align-items: center;
+}
+
+.errorStyle {
+  border-left: 2px solid red!important;
+  color: red!important;
+  transition: 0.1s!important;
+  border-radius: 5px;
+}
+
+.success {
+  border: 1px solid green!important;
+  color: green!important;
+}
+
+.errMsg {
+  color: red;
+  margin: 4px 0 0 2px;
+  font-style: italic;
+  font-size: 8px;
+}
+
+input:focus {
+  outline: 0;
+  box-shadow: none;
+}
+
+.mightyNav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 16px;
+  padding-top: 10px;
+}
+
+.leftDude {
+  color: white;
+}
+
+.chadRight ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+}
+.chadRight ul li {
+  padding: 6px 8px;
+  font-size: 14px;
+}
+
+#getStarted{
+  border: 1px solid white;
+  padding: 5px 13px;
+  border-radius: 2px;
+}
+
+.chadRight a {
+  text-decoration: none;
+  color: white;
+}
+
+.bottomChad {
+  display: flex;
+  justify-content: center;
+  gap: 120px;
+  align-items: center;
+  margin-top: 60px;
+}
+
+.flyBoy {
+  color: white;
+  width: 33%;
+}
+.flyBoy h2 {
+  font-size: 40px;
+  margin-bottom: 0;
+}
+.flyBoy a{
+  color: lightgray;
+  text-decoration: none;
+}
+.flyBoy button {
+  background-color: rgb(15,203,23);
+  border: none;
+  padding: 10px 20px;
+  margin-top: 12px;
+  color: white;
+  font-size: 10px;
+  border-radius: 15px;
+}
+
+.ourForm {
+  border-radius: 6px;
+  width: 250px;
+  background-color: white;
+  box-shadow: 4px 6px 29px rgba(0, 0, 0, 0.7);
+  /* padding: 20px 30px; */
+  opacity: .9;
+}
+
+.ourForm h3 {
+  margin: 20px 0 10px 0;
+  font-weight: 600;
+  text-align: center;
+  position: relative;
+}
+.le {
+  transform: translate(-5px, -2px);
+  font-size: 5px;
+  position: absolute;
+  bottom: 0;
+}
+.theForm {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+}
+
+.ourInput {
+  background-color: #eee;
+  padding: 8px 7px;
+  border: none;
+  border-radius: 2px;
+  width: 200px;
+  color: gray;
+  transition: .1s!important;
+}
+
+.ourInput::placeholder {
+  font-size: 10px;
+}
+
+.submitBtn {
+  background-color: rgb(31, 138, 236);
+  width: 200px;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  padding: 7px 0;
+  margin-top: 6px;
+  margin-bottom: 15px;
+  box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.form-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.checkboks{
+  display: flex;
+  align-items: center;
+  font-size: 8px;
+  width: 80%;
+}
+.checkboks .check{
+  background-color: red;
+}
+
+.errMsgN {
+  font-size: 8px;
+  color: red;
+  width: 100%;
+  transform: translateX(3px);
+  opacity: 0;
+  transition: .1s;
+}
+#reg{
+  position: relative
+}
+#rules{
+  position: absolute;
+  background-color: black;
+  opacity: .8;
+  color: white;
+  left: -140;
+  top: -80;
+  border-radius: 7px;
+  opacity: 0;
+  transition: .5s;
+}
+
+#rules ul{
+  list-style: circle;
+  padding: 5px 10px 0px 18px;
+  font-size: 8px;
+  width: 100px;
+}
+
+#rules ul li{
+  margin-bottom: 8px;
+}
+
+#rules ul li:first-child{
+  list-style: none;
+}
+
+.submitBtn:hover ~ #rules{
+  opacity: .9;
+}
+
+/* for Mobile */
+@media only screen and (max-width: 800px) {
+  .bdy {
+    /* animation: bg 5s ease infinite; */
+    width: 100%;
+  background-color: #3d5efb;
+background-image: linear-gradient(315deg, #4d5dfb 70%, #08a8f6 90%);
+  }
+  body{
+    padding: 7px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  .mightyNav{
+      display: flex-direction;
+      flex-direction: column;
+      align-items: start;
+      margin-bottom: 0;
+    }
+  .leftDude{
+    margin: 10px 20px;
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+  .chadRight ul{
+    justify-content: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid white;
+  }
+  .chadRight ul li{
+    font-size: 16px;
+  }
+  .chadRight ul li:last-child{
+      display: none;
+  }
+  .bottomChad{
+    gap: 50px;
+    display: grid;
+    padding: 0 30px;
+    margin-top: 0;
+  }
+  .flyBoy{
+    color: white;
+    width: 100%;
+  }
+  .flyBoy h2{
+    font-size: 24px;
+  }
+  .flyBoy p{
+    font-size: 14px;
+    line-height: 24px;
+  }
+  .flyBoy button{
+    padding: 7px 15px;
+    border-radius: 15px;
+    background-color: ;
+    border: none;
+    font-size: 8px;
+    margin-top: 2px;
+  }
+  .ourForm{
+    margin: auto;
+     width: 250px;
+}
+
+
+.theForm {
+  gap: 5px;
+}
+
+.ourInput {
+  padding: 8px 5px;
+  border-radius: 2px;
+  width: 210px;
+}
+
+.ourInput::placeholder {
+  font-size: 10px;
+}
+.submitBtn {
+  width: 210px;
+  font-size: 10px;
+  margin-bottom: 0;
+}
+#rules{
+  top: 40;
+  left: 0;
+}
+#rules ul{
+  width: 140px;
+}
+  
+}
+/* for Tab */
+@media only screen and (min-width: 801px) and (max-width: 1000px) {
+  body {
+    background-color: lightgray;
+  }
+
+  .bdy {
+    /* max-width: 900px; */
+    /* transform: translateY(-5%); */
+  }
+  
+  
+@keyframes bg {
+  0% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+		transform: translateY(-250px);
+	}
+
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.flyBoy p{
+  line-height: 25px;
+}
+}
+
+/* for pc */
+@media only screen and (min-width: 1200px) {
+  body {
+  }
+  
+  
+@keyframes bg {
+  0% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+		transform: translateY(-200px);
+	}
+
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.flyBoy p{
+  line-height: 28px;
+}
+}
+
+/*
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+
+*/

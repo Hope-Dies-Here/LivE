@@ -1,0 +1,52 @@
+#profContainer{
+  color: white; 
+  /* border: 1px solid white; */
+  width: 80%;
+  margin: 10px auto;
+}
+
+#userImgCont {
+  /* border: 1px solid white; */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 25px;
+}
+
+#profileBottom{
+  margin-top: 25px;
+  padding: 10px 30px;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  background-color: white;
+  color: #0482a0;
+  opacity: .8;
+  border-radius: 10px;
+  height: 300px;
+  gap: 10px;
+}
+
+a{
+  color: #0482a0;
+}
+
+#profileAbout li{
+  margin-bottom: 10px;
+}
+
+#submitedChallenges ul{
+  border-left: 1px solid lightgray;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  list-style: none;
+  padding-left: 20px;
+}
+
+
+#submitedChallenges li{
+  padding: 3px 5px;
+  margin-bottom: 5px;
+  /* border-bottom: 1px solid gray; */
+  /* border: 1px solid red; */
+}

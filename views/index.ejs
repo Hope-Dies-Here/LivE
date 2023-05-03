@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <!-- 
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    -->
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://source.unsplash.com/random/200x200"
+    />
+    <meta name="viewport" content="width=1370" />
+    <link rel="stylesheet" type="text/css" href="/profile.css" />
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <link rel="stylesheet" type="text/css" href="/submit.css" />
+    <link rel="stylesheet" type="text/css" href="/review.css" />
+  </head>
+  <body>
+    <div class="bdy">
+      <header>
+        <nav class="mightyNav">
+          <div class="leftDude">Loadung...</div>
+          <div class="chadRight">
+            <ul>
+              <li>
+                <a href="/"> Home </a>
+              </li>
+              <% if(show) { %>
+                <li>
+                  <a href="/profile"> Profile </a>
+                </li>
+                <li>
+                  <a href="/submit"> Submit </a>
+                </li>
+              <% } %>
+              <li>
+                <a href="/challenges"> Challenges </a>
+              </li>
+              <li>
+                <a href="/todo"> TODO </a>
+              </li>
+              <li>
+                <% if(show) {%>
+                  <a id="getStarted" href="#">Logged In</a>
+                <% } else { %>
+                  <a id="getStarted" href="/login"> Login </a>
+                  
+                <% } %>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <%- include (`./partials/${page}`) %>
+      <%if(show) { %>
+      <form method="post" action="/logout">
+        <input type="submit" value="Logout" id="getStarted">
+      </form>
+      <% } %>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
