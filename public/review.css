@@ -14,6 +14,7 @@
   background-color: white;
   opacity: .8;
   padding: 10px 0;
+  position: relative;
 }
 #revtitle{
   color: #0482a0;
@@ -47,4 +48,42 @@
 a{
   color: #0482a0;
   /* text-decoration: none; */
+}
+
+.pagination {
+  margin: 0 auto;
+  padding: 0;
+  ttext-align: center;
+  position: absolute;
+  bottom: 20;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.pagination a {
+  display: inline-block;
+  margin: 0 0;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  color: #666;
+  text-decoration: none;
+}
+
+.pagination a.active {
+ /* background-color: #4CAF50; */
+  background-color: #08c8f6;
+  color: #fff;
+}
+
+.pagination a:hover {
+  background-color: #ddd;
+}
+
+.pagination a.prev,
+.pagination a.next {
+  font-weight: bold;
+}
+.disabled{
+  background-color: #ddd;
 }

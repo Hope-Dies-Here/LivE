@@ -18,8 +18,32 @@
       </li>
       <% }) %>
     </ul>
-  <div style="width: fit-content; margin: auto">
-    <= 1 2 3 4 5 =>
-  </div>
+  
+    <div class="pagination">
+        <% if(pages > 1) { %>
+          <% if(current == 1){ %>
+            <a class="prev disabled">&laquo;</a>
+           <% } else{ %>
+            <a href="/challenges/<%= current - 1 %>" class="prev">&laquo;</a>
+          <% } %>
+          <% for(let i = 1; i <= pages; i++){ %>
+            <!-- <a href="#" class="active">1</a> -->
+            <% if(i == current) { %>
+              <a class="active" href="/challenges/<%= i %>"> 
+                <%= i %> 
+              </a>
+            <% } else { %>
+              <a href="/challenges/<%= i %>">
+                <%= i %> 
+              </a>
+            <% } %>
+          <% } %>
+          <% if(current == pages){ %>
+            <a class="prev disabled">&raquo;</a>
+           <% } else{ %>
+            <a href="/challenges/<%= current + 1 %>" class="prev">&raquo;</a>
+          <% } %>
+        <% } %>
+    </div>
   </div>
 </div>

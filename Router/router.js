@@ -112,7 +112,7 @@ router.post('/submit', async(req, res) => {
     res.redirect("/submit")
   }
     // myTempDb.push({name: req.body.name, link: req.body.link, uname: req.session.validUname})
-      res.redirect('/challenges')
+      res.redirect('/challenges/1')
   } else {
     res.send("err maybe")
   }
@@ -135,11 +135,26 @@ router.get("/profile", async(req, res) => {
 })
 
 //get challenges 
-router.get('/challenges', async(req, res) => {
+router.get('/challenges/:page', async(req, res) => {
+  const page = req.params.page || 1
+  const perPage = 8
+  const skip = (perPage * page) - perPage
+  const limit = perPage
   // const db = myTempDb.map(link => link).reverse()
-  const db = await challenges.find({}).populate("owner")
-  console.log(db)
-  res.render('index', {page: "review", db: db, show: showProNav, uname: req.session.validUname})
+  const fullDb = await challenges.find()
+  const db = await challenges.find()
+  .populate("owner")
+  .sort({_id: -1})
+  .skip(skip)
+  .limit(limit)
+  res.render('index', {
+    page: "review",
+    db: db,
+    show: showProNav,
+    uname: req.session.validUname,
+    current: parseInt(page),
+    pages: Math.ceil(fullDb.length / perPage),
+  })
 })
 //challenge owners
 router.get("/owners/:id", (req, res) => {
