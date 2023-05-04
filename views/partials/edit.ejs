@@ -1,0 +1,16 @@
+  <div id="delete">
+    <form method="post" action="/deletee/<%= db._id %>">
+      <input type="submit" value="Delete">
+    </form>
+  </div>
+
+<div id="editContainer">
+  <form id="edit" method="post" action="/update/<%= db._id %>">
+    <h2>Edit</h2>
+    Name
+    <input type="text" value="<%= db.challengeName %>" name="name">
+    Link
+    <input type="text" value="<%= db.challengeLink %>" name="link">
+    <input type="submit" value="Update">
+  </form>
+</div>

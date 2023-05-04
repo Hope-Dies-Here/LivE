@@ -1,11 +1,14 @@
 <div id="profContainer">
   <div id="userImgCont">
     <img src="/img/user.svg" width="80px"/>
-    <h1>
-      <%= name %>
-    </h1>
+    <div id="bioName">
+      <h1>
+        <%= name %>
+      </h1>
+      <sub>bio</sub>    
+    </div>
     <% if(request == "direct") { %>
-      <p>edit</p>
+      <p id="eedit">edit</p>
     <% }  %>
   </div>
   <% if(request == "alt") { %>
@@ -18,13 +21,19 @@
       </h3>
       <ul>
         <li>
-          Full Name: User of Demo
+          Full Name: <%= name %>
         </li>
+        <% if(request == "alt") { %>
+          <li>
+            Userame: <%= db[0].owner.username %>
+          </li>
+        <% } else { %>
+          <li>
+            Userame: <%= user.username %>
+          </li>
+        <% } %>
         <li>
-          Nick Name: User
-        </li>
-        <li>
-          Rating: 4.8
+          Complated: <%= db.length %>
         </li>
         <li>
           Description: tempor deserunt veniam incididunt consequat nisi sit quis ut fugiat
@@ -36,13 +45,30 @@
         Projects
       </h3>
       <ul>
-        <% db.forEach(data => { %>
-          <li> 
-            <a href='#' >
-              <%= data.challengeName %> 
+        <% if(db.length > 0 && db.length < 9){ %>
+          <% for(let i = 0; i < db.length; i++) { %>
+            <li> 
+              <a href='#' >
+                <%= db[i].challengeName %> 
+              </a>
+            </li>
+          <% } %>
+        <% } else if(db.length > 0 && db.length > 9) { %>
+          <% for(let i = 0; i < 9; i++) { %>
+            <li> 
+            <a href='#'>
+              <%= db[i].challengeName %> 
             </a>
           </li>
-        <% }) %>
+          <% } %>
+          <li>
+            <a href="/<%=db[0].owner.username%>/more" style="color: pink">
+                See more...
+            </a>
+          </li>
+        <% } else { %>
+          <li> No Data Found </li>
+        <% } %>
       </ul>
     </div>
   </div>

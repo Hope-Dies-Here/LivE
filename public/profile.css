@@ -50,3 +50,17 @@ a{
   /* border-bottom: 1px solid gray; */
   /* border: 1px solid red; */
 }
+
+#bioName h1{
+  margin-bottom: 5px;
+}
+
+#bioName sub{
+  font-style: italic;
+  color: #ebebeb;
+  margin-left: 5px;
+}
+
+#eedit{
+  color: pink;
+}
