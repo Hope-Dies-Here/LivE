@@ -9,7 +9,7 @@
   height: 400px;
   box-shadow: 3px 5px 8px rgba(0, 0, 0, .2);
   border-radius: 10px;
-  width: 750px;
+  width: 75%;
   margin: auto;
   background-color: white;
   opacity: .8;
@@ -86,4 +86,51 @@ a{
 }
 .disabled{
   background-color: #ddd;
+}
+
+@media only screen and (max-width: 800px) {
+  #rev-container {
+    /* background-color: red; */
+    height: 80vh;
+  }
+  #list {
+    height: 80%;
+    border: 2px solid teal;
+    background-color: white;
+    margin-top: 40;
+    /* opacity: 1; */
+  }
+  
+  #reviewUl{
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: -5px;
+  }
+  #linkOwner{
+    font-size: 10px;
+    padding: 5px 0px 0 3px;
+    font-style: italic;
+  }
+  
+  #revLi{
+    grid-template-columns: 1fr 27%;
+    padding: 20px 0 10px 5px;
+  }
+  #revLi a{
+    font-weight: 400;
+    text-decoration: none;
+  }
+  .pagination {
+    bottom: 15;
+  }
+  .pagination a{
+    font-size: 10px;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  #list {
+    width: 90%;
+  }
 }

@@ -8,7 +8,14 @@
           </p>
           <button>SEE PRICING</button>
         </div>
-        <div class="ourForm">
+        <% if(show) { %>
+          <div id="loggedHome">
+            <h1>
+              <%= n %>
+            </h1>
+          </div>
+        <% } else { %>
+          <div class="ourForm">
           <h3 id="simp">SIMP<sup class="le">le </sup> User Form</h3>
           <h4 id="youShallNotPass">
             YOU SHALL NOT PASS <img src="./img/1.png" />
@@ -96,4 +103,6 @@
             </div>
           </form>
         </div>
+        <% } %>
+
       </section>

@@ -6,11 +6,6 @@ const router = express.Router();
 const users = require("../Models/Users");
 const challenges = require("../Models/Challenges");
 
-/*
-// Compare a password
-
-*/
-
 let msg = "";
 
 //middleware
@@ -20,7 +15,7 @@ const validUser = (req, res, next) => {
 };
 
 router.get("/", async (req, res) => {
-/* // Hash a password
+  /* // Hash a password
   let hPassword = "dummy69";
   bcrypt.genSalt(10, (err, salt) => {
     bcrypt.hash(hPassword, salt, async (err, hash) => {
@@ -32,18 +27,25 @@ router.get("/", async (req, res) => {
   res.render("index", {
     page: "home",
     show: req.session.showProNav,
+    n: req.session.validUname
   });
 });
 
 //login
 router.get("/login", (req, res) => {
-  res.render("index", {
-    page: "login",
-    show: req.session.showProNav,
-    msg: req.session.msg,
-  });
+  if (!req.session.validUser) {
+    res.render("index", {
+      page: "login",
+      show: req.session.showProNav,
+      msg: req.session.msg || "",
+      un: req.session.un || "",
+    });
+    req.session.destroy();
+  } else {
+    res.redirect("/");
+  }
 });
-
+//check login
 router.post("/login", async (req, res) => {
   const uname = req.body.uname;
   const passwd = req.body.passwd;
@@ -51,6 +53,7 @@ router.post("/login", async (req, res) => {
   const foundUser = await users.findOne({ username: uname });
   try {
     if (foundUser) {
+      //Username found
       bcrypt.compare(passwd, foundUser.password, (err, isMatch) => {
         if (err) {
           // Handle the error
@@ -58,11 +61,10 @@ router.post("/login", async (req, res) => {
         } else if (!isMatch) {
           // Password doesn't match
           req.session.msg = "Password lk adelem";
+          req.session.un = uname;
           res.redirect("/login");
-          console.log("password didnt match");
         } else {
           // Password matches
-          console.log(" hash ");
           session.validUser = foundUser.name;
           session.validUname = foundUser.username;
           session.id69 = foundUser._id;
@@ -71,47 +73,72 @@ router.post("/login", async (req, res) => {
         }
       });
     } else {
+      //No Username found
       req.session.msg = "Username not found";
-      res.redirect("/login")
+      res.redirect("/login");
     }
   } catch (err) {
+    //Handle other errors
     res.status(500).json({ msg: "login err" });
   }
 });
 
 //register
-router.post("/register", (req, res) => {
-  const name = req.body.name;
+router.get("/register", (req, res) => {
+  res.json({msg: "Too soon"})
 });
+
+router.post("/register", (req, res) => {
+  res.json({msg: `Ahun register madreg aychalm ${ req.body.name }`})
+})
 
 //get submit
 router.get("/submit", (req, res) => {
   if (req.session.validUser) {
+    //User is logged in
     res.render("index", { page: "submit", show: req.session.showProNav });
   } else {
+    //User is not logged in
+    req.session.msg = "Login First";
     res.redirect("/login");
   }
 });
 //post submit
 router.post("/submit", [body("name"), body("link")], async (req, res) => {
   const errors = validationResult(req);
+  //error found while Sanitization
   if (!errors.isEmpty())
     return res.status(404).json({ msg: "validation not passed" });
-  if (req.body.name != "" && req.body.link != "") {
-    try {
-      const acceptedData = new challenges({
-        challengeName: req.body.name,
-        challengeLink: req.body.link,
-        owner: req.session.id69,
-      });
-      await acceptedData.save();
-    } catch (err) {
-      console.log(err);
-      res.redirect("/submit");
+  
+  //No Sanitization Error
+  if (req.session.validUname) {
+    //User is logged in
+    if (req.body.name != "" && req.body.link != "") {
+      //User inpute is correct
+      try {
+        //Add to db
+        const acceptedData = new challenges({
+          challengeName: req.body.name,
+          challengeLink: req.body.link,
+          owner: req.session.id69,
+        });
+        await acceptedData.save();
+        res.redirect("/challenges/1");
+      } catch (err) {
+        //Error adding to db
+        res.status(500).json({ msg: "errr submiting try again" });
+        res.redirect("/submit");
+      }
+    } else {
+      //User is really testing me
+      //Error input found
+      res.send("err maybe");
     }
-    res.redirect("/challenges/1");
   } else {
-    res.send("err maybe");
+    //Unauthorized access 
+    //Or you can say it user is not logged in (top one is waaay cooler)
+    req.session.msg = "Login First";
+    res.redirect("/login");
   }
 });
 
@@ -134,7 +161,8 @@ router.get("/profile", async (req, res) => {
         request: "direct",
       });
     } else {
-      res.status(404).redirect("/login");
+      req.session.msg = "Login First";
+      res.redirect("/login");
     }
   } catch (err) {
     console.log(err);
@@ -143,7 +171,7 @@ router.get("/profile", async (req, res) => {
 });
 
 //get challenges
-router.get("challenges", (req, res) => {
+router.get("/challenges", (req, res) => {
   res.redirect("/challenges/1");
 });
 
@@ -152,7 +180,7 @@ router.get(
   [param("page").isInt().toInt()],
   async (req, res) => {
     const errors = validationResult(req);
-    if (!errors.isEmpty()) return res.status(500).json({ msg: "nice try" });
+    if (!errors.isEmpty()) return res.status(500).redirect("/challenges");
 
     const page = req.params.page || 1;
     const perPage = 8;
@@ -182,6 +210,8 @@ router.get(
 );
 //challenge owners
 router.get("/owners/:id", async (req, res) => {
+  const userData = await users.findOne({ username: req.params.id });
+  if(req.params.id == req.session.validUname) return res.redirect("/profile")
   const allChallenges = await challenges
     .find()
     .populate("owner")
@@ -189,16 +219,25 @@ router.get("/owners/:id", async (req, res) => {
   const targetUser = await allChallenges.filter(
     (data) => data.owner.username == req.params.id
   );
-  if (targetUser.length > 0) {
+  if (userData) {
     res.render("index", {
       page: "profile",
       show: req.session.showProNav,
       db: targetUser,
-      name: targetUser[0].owner.name,
+      name: userData.name,
+      username: userData.username,
       request: "alt",
     });
   } else {
-    res.json({ err: "undefined" });
+    res.render("index", {
+      page: "profile",
+      show: req.session.showProNav,
+      db: [],
+      name: "",
+      username: "",
+      request: "alt",
+    });
+    // res.json({ err: "undefined" });
   }
 });
 //edit my link
@@ -219,7 +258,7 @@ router.get("/challenges/edit/:id", async (req, res) => {
     }
     // --------- this line should be watched again -----------
   } catch (err) {
-    res.status(500).json({ msg: "couldnt fetch from db", err: err });
+    res.status(500).json({ msg: "couldn't fetch from db" });
   }
 });
 
@@ -246,8 +285,10 @@ router.post("/update/:id", [body("name"), body("link")], async (req, res) => {
       res.status(200).redirect("/challenges/1");
     } catch (err) {
       console.log(err);
+      res.status(500).json({ msg: "some error, update again" });
     }
   } else {
+    req.session.msg = "Login before you update";
     res.redirect("/login");
   }
 });
@@ -260,10 +301,10 @@ router.post("/deletee/:id", async (req, res) => {
       res.redirect("/challenges/1");
       console.log("link deleted ");
     } else {
-      res.json({ err: "who u?" });
+      res.json({ err: "who u? login first!!!" });
     }
   } catch (err) {
-    res.status(500).json({ err: "some error try again maybe" });
+    res.status(500).json({ err: "some error, try to delete again maybe" });
   }
 });
 //todo //FAQ
@@ -272,6 +313,10 @@ router.get("/todo", (req, res) => {
 });
 
 //logout
+router.get("/logout", (req, res) => {
+  req.session.destroy();
+  res.redirect("/");
+});
 router.post("/logout", (req, res) => {
   req.session.destroy();
   res.redirect("/");

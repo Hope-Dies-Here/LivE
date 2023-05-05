@@ -49,5 +49,46 @@
   border: 1px solid white;
   margin-right: -1px;
   background-color: #d7d7d7;
+  border-radius: 3px 0 0 3px;
 }
 
+@media only screen and (max-width: 800px){
+  .container{
+    height: fit-content;
+    background-color: teal;
+    flex-direction: column;
+    gap: 20px;
+    margin: 40 auto;
+    /* justify-content: center; */
+    /* height: 100vh; */
+    width: 90%;
+    border-radius: 8px;
+    border: 2px solid white;
+    padding: 30px 0;
+  }
+  
+  .left{
+    width: 75%;
+    /* text-align: center; */
+    /* margin-left: -25; */
+    /* border: 1px solid white; */
+  }
+  .left ul{
+    /* list-style: none; */
+    padding: 0;
+    
+  }
+  .left h2{
+    font-size: 18px;
+    
+  }
+  .left li{
+    font-size: 12px;
+    margin-bottom: 8;
+  }
+  
+}
+  .submitFromCont form{
+    display: flex;
+    flex-direction: column;
+  }

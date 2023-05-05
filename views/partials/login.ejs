@@ -9,11 +9,14 @@
           </p>
           <button>SEE PRICING</button>
         </div> -->
-        <div class="ourForm">
-          <h3 id="simp">SIMP<sup class="le">le </sup> User Form</h3>
-          <h4 id="youShallNotPass">
-            YOU SHALL NOT PASS <img src="./img/1.png" />
-          </h4>
+        <div class="ourForm" style="margin-top: 5%">
+          <% if(msg == "") { %>
+            <h3 id="simp"> Login ... </h3>
+          <% } else { %>
+            <h4 id="youShallNotPass" style="display: block; text-align: center">
+              YOU SHALL NOT PASS <img src="./img/1.png" />
+            </h4>
+          <% } %>
           <p style="color:red; text-align: center; font-size: 12px">
             <%= msg %>
           </p>
@@ -27,6 +30,7 @@
                 class="ourInput"
                 id="simpUname"
                 type="text"
+                value="<%=un%>"
                 placeholder="Username "
               />
             </div>

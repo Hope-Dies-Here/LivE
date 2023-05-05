@@ -16,6 +16,19 @@ body {
 .gandalf{
  
 }
+#loggedHome{
+  background-color: white;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 10em;
+  border-radius: 10px;
+  color: #08c8f6;
+  opacity: .85;
+  animation: fade 1s ease;
+}
 #youShallNotPass{
   display: none;
   margin: 20px 0 10px 0;
@@ -37,6 +50,7 @@ background-image: linear-gradient(12deg, #4d5dfb 31%, #08c8f6 70%);
   box-shadow: 0px 6px 16px rgba(95, 111, 233, 0.8);
   transition: .5s;
   aanimation: eg 1.5s ease ;
+  position: relative;
   /* animation: thoo 12s ease infinite; */
 }
 
@@ -48,6 +62,14 @@ background-image: linear-gradient(12deg, #4d5dfb 31%, #08c8f6 70%);
   100% {
     transformm: translateY(0px);
     opacity: 1;
+  }
+}
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: .85;
   }
 }
 
@@ -276,53 +298,78 @@ input:focus {
 .submitBtn:hover ~ #rules{
   opacity: .9;
 }
-
+#logot{
+  position: absolute;
+  bottom: -5;
+  left: 10;
+  border-radius: 3px;
+  width: fit-content;
+}
 /* for Mobile */
 @media only screen and (max-width: 800px) {
   .bdy {
-    /* animation: bg 5s ease infinite; */
+    height: 110vh;
     width: 100%;
-  background-color: #3d5efb;
-background-image: linear-gradient(315deg, #4d5dfb 70%, #08a8f6 90%);
+  background-color: white;
+/* background-image: linear-gradient(315deg, #4d5dfb 70%, #08a8f6 90%); */
+  border: 3px solid white;
   }
   body{
-    padding: 7px 15px;
+    padding: 5px 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    
   }
   .mightyNav{
-      display: flex-direction;
+      display: flex;
       flex-direction: column;
-      align-items: start;
+      align-items: center;
+      justify-content: center;
       margin-bottom: 0;
+      background-color: teal;
+      /* opacity: .7; */
+      border-radius: 5px;
+      border-bottom: 2px solid white;
+      border-top: 2px solid black;
     }
   .leftDude{
     margin: 10px 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-weight: 700;
   }
   .chadRight ul{
+    padding: 0;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    text-align: center;
     justify-content: center;
-    padding-bottom: 10px;
-    border-bottom: 1px solid white;
   }
   .chadRight ul li{
-    font-size: 16px;
+    font-size: 14px;
   }
   .chadRight ul li:last-child{
-      display: none;
+    border: none;
   }
   .bottomChad{
     gap: 50px;
-    display: grid;
-    padding: 0 30px;
-    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: teal;
+    padding: 50px 0;
+    margin: 40 auto;
+    width: 90%;
+    border-radius: 8px;
+    /* border-right: 2px solid white; */
+    border: 2px solid white;
+    /* opacity: .8; */
   }
   .flyBoy{
+    text-align: center;
     color: white;
-    width: 100%;
+    width: 80%;
   }
   .flyBoy h2{
     font-size: 24px;
@@ -342,7 +389,12 @@ background-image: linear-gradient(315deg, #4d5dfb 70%, #08a8f6 90%);
   .ourForm{
     margin: auto;
      width: 250px;
-}
+  }
+  #loggedHome{
+    width: 80%;
+    margin: auto;
+    border: 2px solid #08a8f6;
+  }
 
 
 .theForm {

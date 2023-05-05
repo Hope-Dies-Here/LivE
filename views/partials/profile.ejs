@@ -2,9 +2,13 @@
   <div id="userImgCont">
     <img src="/img/user.svg" width="80px"/>
     <div id="bioName">
-      <h1>
-        <%= name %>
-      </h1>
+      <% if(name == "") { %>
+        <h1>No User Found!</h1>
+      <% } else{  %>
+        <h1>
+          <%= name %>
+        </h1>
+      <% }  %>
       <sub>bio</sub>    
     </div>
     <% if(request == "direct") { %>
@@ -17,7 +21,7 @@
   <div id="profileBottom">
     <div id="profileAbout">
       <h3>
-        About <%= name %>
+        About
       </h3>
       <ul>
         <li>
@@ -25,7 +29,7 @@
         </li>
         <% if(request == "alt") { %>
           <li>
-            Userame: <%= db[0].owner.username %>
+            Userame: <%= username %>
           </li>
         <% } else { %>
           <li>
@@ -45,7 +49,7 @@
         Projects
       </h3>
       <ul>
-        <% if(db.length > 0 && db.length < 9){ %>
+        <% if(db.length > 0 && db.length <= 9){ %>
           <% for(let i = 0; i < db.length; i++) { %>
             <li> 
               <a href='#' >

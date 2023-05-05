@@ -1,4 +1,4 @@
 use LIVE;
 db.users.insertOne({name: "Zelalem Legese", username: "Zlelew", password: "bbcTheOne" })
 db.users.insertOne({name: "Bereket Tsegaye", username: "B_Smile", password: "junior" })
-db.users.insertOne({name: "Bereket Tsegaye", username: "Dummy", password: "qwerty" })
+db.users.insertOne({name: "Daniel Temesgen", username: "Dummy", password: "qwerty" })
