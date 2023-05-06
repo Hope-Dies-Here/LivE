@@ -9,7 +9,7 @@ const app = express()
 const router = require("./Router/router.js")
 const port = process.env.PORT || 3000
 require("dotenv").config()
-const DB_STRING = "mongodb://mongo:zyjsGegh5OqnXc2yyvVY@containers-us-west-183.railway.app:6403"
+
 const dbString = process.env.DB_STRING || DB_STRING
 mongoose.connect(dbString)
 const db = mongoose.connection
