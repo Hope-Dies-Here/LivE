@@ -15,15 +15,15 @@ const validUser = (req, res, next) => {
 };
 
 router.get("/", async (req, res) => {
-  /* // Hash a password
-  let hPassword = "dummy69";
+   // Hash a password
+  let hPassword = "user";
   bcrypt.genSalt(10, (err, salt) => {
     bcrypt.hash(hPassword, salt, async (err, hash) => {
       console.log(hash);
-      await users.updateOne({username: "Dummy"}, {$set : {password: hash}})
+      await users.updateOne({username: "user"}, {$set : {password: hash}})
       // Store the hash in the database
     });
-  }); */
+  }); 
   res.render("index", {
     page: "home",
     show: req.session.showProNav,
@@ -299,7 +299,6 @@ router.post("/deletee/:id", async (req, res) => {
     if (req.session.validUname) {
       await challenges.deleteOne({ _id: req.params.id });
       res.redirect("/challenges/1");
-      console.log("link deleted ");
     } else {
       res.json({ err: "who u? login first!!!" });
     }

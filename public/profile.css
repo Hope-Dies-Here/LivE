@@ -75,6 +75,7 @@ a{
     border: 2px solid white;
     border-radius: 8px;
     padding-top: 20px;
+    opacity: .85;
   }
   #userImgCont{
     padding: 5px;
@@ -93,8 +94,7 @@ a{
     display: grid;
     grid-template-columns: 1fr;
     height: fit-content;
-/*     opacity: 1;
- */    
+    opacity: 1;
   }
   #profileAbout{
     
