@@ -16,14 +16,15 @@ const validUser = (req, res, next) => {
 
 router.get("/", async (req, res) => {
    // Hash a password
-  /*let hPassword = "user";
+  /* let hPassword = "bbc";
   bcrypt.genSalt(10, (err, salt) => {
     bcrypt.hash(hPassword, salt, async (err, hash) => {
       console.log(hash);
-      await users.updateOne({username: "user"}, {$set : {password: hash}})
+      await users.updateOne({username: "Zlelew"}, {$set : {password: hash}})
       // Store the hash in the database
     });
-  }); */
+  }); 
+    */
   res.render("index", {
     page: "home",
     show: req.session.showProNav,
