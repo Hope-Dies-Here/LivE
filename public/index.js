@@ -144,7 +144,11 @@ const submitForm = (e) => {
     $("#passwdErr").style = "opacity: 0";
   }
 
-  if (status == true) alert(`Suucceess Mr ${name.value}`);
+  if (status == true) {
+    alert(`Suucceess Mr ${name.value}`); 
+    status = false 
+    return status
+  }
   else {
     $("#simp").style = "display: none"
     $("#youShallNotPass").style = "display: flex"

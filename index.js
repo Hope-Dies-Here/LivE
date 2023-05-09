@@ -11,17 +11,17 @@ const router = require("./Router/router.js")
 const port = process.env.PORT || 3000
 require("dotenv").config()
 
-const dbString = process.env.DB_STRING
+const dbString = process.env.LOCAL_DB_STRING ||  process.env.DB_STRING 
 mongoose.connect(dbString)
 const db = mongoose.connection
 // db.on("error", console.log("error connecting db"))
 db.once("open", () => {
   console.log("database databased")
-  app.listen(port, () => console.log('server served'))
+  app.listen(port, () => console.log(`server serveda at ${port}`))
 })
 
 app.use(session({
-  secret: "getto bird",
+  secret: process.env.SESSION_KEY,
   cookie: { maxAge: 86400000 },
   store: new MemoryStore({
     checkPeriod: 86400000
@@ -38,5 +38,3 @@ app.use(helmet())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static('public'))
 app.use("/", router)
-
-

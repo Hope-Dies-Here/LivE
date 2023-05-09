@@ -68,7 +68,7 @@ a{
 @media only screen and (max-width: 800px){
 
   #profContainer{
-    background-color: teal;
+    background-color: #1589c7;
     margin: 0;
     width: 90%;
     margin: 40 auto;
@@ -76,6 +76,7 @@ a{
     border-radius: 8px;
     padding-top: 20px;
     opacity: .85;
+    animation: fade .9s ease;
   }
   #userImgCont{
     padding: 5px;
@@ -90,7 +91,8 @@ a{
   }
   
   #profileBottom{
-    border: 3px solid teal;
+    color: #1589c7;
+    border: 3px solid #1589c7;
     display: grid;
     grid-template-columns: 1fr;
     height: fit-content;
