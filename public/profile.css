@@ -17,7 +17,7 @@
   margin-top: 25px;
   padding: 10px 30px;
   display: grid;
-  grid-template-columns: 1fr 1.1fr;
+  grid-template-columns: 1fr 1fr;
   background-color: white;
   color: #0482a0;
   opacity: .8;
@@ -104,6 +104,7 @@ a{
   }
   #submitedChallenges{
     /* margin-top: -15px; */
+    
   }
   
   #submitedChallenges ul{
@@ -122,3 +123,21 @@ a{
     text-decoration: underline;
   }
 }
+/* 
+#eg-cont{
+  background-color: steelblue;
+  padding: 2em;
+  border: 1px solid white;
+  
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: .4s;
+}
+
+#eg-cont > div{
+  overflow: hidden;
+}
+
+#eg-cont:hover{
+  grid-template-rows: 1fr;
+} */

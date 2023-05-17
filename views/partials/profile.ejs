@@ -45,14 +45,14 @@
       </ul>
     </div>
     <div id="submitedChallenges">
-      <h3>
+      <h3 id="pro">
         Projects
       </h3>
-      <ul>
+      <ul id="proUl">
         <% if(db.length > 0 && db.length <= 9){ %>
           <% for(let i = 0; i < db.length; i++) { %>
             <li> 
-              <a href='#' >
+              <a href="<%= db[i].challengeLink %>" >
                 <%= db[i].challengeName %> 
               </a>
             </li>
@@ -60,7 +60,7 @@
         <% } else if(db.length > 0 && db.length > 9) { %>
           <% for(let i = 0; i < 9; i++) { %>
             <li> 
-            <a href='#'>
+            <a href="<%= db[i].challengeLink %>">
               <%= db[i].challengeName %> 
             </a>
           </li>
@@ -77,3 +77,8 @@
     </div>
   </div>
 </div>
+  <!-- <div id="eg-cont">
+    <div id="inside">
+      <p> BELELLELELELELLLLLLLLLEL <br> shfsf</p>
+    </div>
+  </div> -->
