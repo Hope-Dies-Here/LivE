@@ -23,7 +23,7 @@ db.once("open", () => {
 
 app.use(session({
   secret: process.env.SESSION_KEY,
-  cookie: { maxAge: 86400000 },
+  cookie: { httpOnly: true, secure: true, maxAge: 1000 * 60 * 60 * 48, sameSite: 'none' },
   store: new MemoryStore({
     checkPeriod: 86400000
   }),
