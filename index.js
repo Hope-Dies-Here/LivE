@@ -7,6 +7,7 @@ const MemoryStore = require("memorystore")(session);
 const ejs = require("ejs")
 const bodyParser = require("body-parser")
 const app = express()
+const path = require("path")
 const router = require("./Router/router.js")
 const port = process.env.PORT || 3000
 require("dotenv").config()
@@ -31,7 +32,7 @@ app.use(session({
 }))
 
 app.set("view engine", "ejs")
-app.set("views", "./views")
+app.set("views", path.join(__dirname, "views"));
 
 app.use(compression())
 app.use(helmet())
