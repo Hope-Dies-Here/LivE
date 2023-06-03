@@ -20,7 +20,7 @@ db.once("open", () => {
   console.log("database databased")
   app.listen(port, () => console.log(`server serveda at ${port}`))
 })
-
+app.set("trust proxy", 1);
 app.use(session({
 //   secret: process.env.SESSION_KEY,
 //   cookie: { maxAge: 86400000 },
