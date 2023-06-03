@@ -20,26 +20,46 @@ db.once("open", () => {
   console.log("database databased")
   app.listen(port, () => console.log(`server serveda at ${port}`))
 })
-app.set("trust proxy", 1);
-app.use(session({
+// app.set("trust proxy", 1);
+// app.use(session({
+// //   secret: process.env.SESSION_KEY,
+// //   cookie: { maxAge: 86400000 },
+// //   store: new MemoryStore({
+// //     checkPeriod: 86400000
+// //   }),
+// //   resave: false,
+// //   saveUninitialized: true
 //   secret: process.env.SESSION_KEY,
-//   cookie: { maxAge: 86400000 },
-//   store: new MemoryStore({
-//     checkPeriod: 86400000
-//   }),
-//   resave: false,
-//   saveUninitialized: true
-  secret: process.env.SESSION_KEY,
-    resave: false,
-    saveUninitialized: true,
-    proxy: true, // Required for Heroku & Digital Ocean (regarding X-Forwarded-For)
-    name: 'MyCoolWebAppCookieName', // This needs to be unique per-host.
-    cookie: {
-      secure: true, // required for cookies to work on HTTPS
-      httpOnly: false,
-      sameSite: 'none'
-    }
-}))
+//     resave: false,
+//     saveUninitialized: true,
+//     proxy: true, // Required for Heroku & Digital Ocean (regarding X-Forwarded-For)
+//     name: 'MyCoolWebAppCookieName', // This needs to be unique per-host.
+//     cookie: {
+//       secure: true, // required for cookies to work on HTTPS
+//       httpOnly: false,
+//       sameSite: 'none'
+//     }
+// }))
+
+app.set('trust proxy', 1);
+
+app.use(session({
+cookie:{
+    secure: true,
+    maxAge:60000
+       },
+store: new RedisStore(),
+secret: process.env.SESSION_KEY,
+saveUninitialized: true,
+resave: false
+}));
+
+// app.use(function(req,res,next){
+// if(!req.session){
+//     return next(new Error('Oh no')) //handle error
+// }
+// next() //otherwise continue
+// });
 
 
 app.set("view engine", "ejs")
