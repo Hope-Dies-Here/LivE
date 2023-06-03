@@ -21,7 +21,7 @@ db.once("open", () => {
   app.listen(port, () => console.log(`server serveda at ${port}`))
 })
 
-// app.use(session({
+app.use(session({
 //   secret: process.env.SESSION_KEY,
 //   cookie: { maxAge: 86400000 },
 //   store: new MemoryStore({
@@ -29,9 +29,7 @@ db.once("open", () => {
 //   }),
 //   resave: false,
 //   saveUninitialized: true
-// }))
-{
-    secret: process.env.SESSION_KEY,
+  secret: process.env.SESSION_KEY,
     resave: false,
     saveUninitialized: true,
     proxy: true, // Required for Heroku & Digital Ocean (regarding X-Forwarded-For)
@@ -41,7 +39,8 @@ db.once("open", () => {
       httpOnly: false,
       sameSite: 'none'
     }
-  }
+}))
+
 
 app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "views"));
