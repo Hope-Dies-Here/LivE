@@ -49,5 +49,5 @@ app.use(compression())
 app.use(helmet())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static(__dirname + "/public/"));
-app.use("/", router)
+//app.use("/", router)
 
