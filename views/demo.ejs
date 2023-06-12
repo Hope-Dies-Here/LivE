@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- 
+    <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+    
+    -->
+    <meta name="viewport" content="width=1380" />
+    <link rel="stylesheet" href="/demo.css" />
+    <title><title></title>
+    
+  </head>
+  <body>
+    <main id="main">
+      <!-- header -->
+      <section class="header">
+        <div>
+          <nav class="navbar">
+            <div class="main-tittle"><h3 class="theFont">Loadung</h3>
+            </div>
+
+            <div class="navigations theFont" >
+              <a href="/demo">Home</a>
+              <a href="/demo/profile">Profile</a>
+              <a href="/demo/submit">Submit</a>
+              <a href="/demo/challenges">Challeges</a>
+              <a href="#">Leaderboard</a>
+              <a href="/demo/login">Login</a>
+            </div>
+          </nav>
+        </div>
+      </section>
+      <section class="home-section">
+        <%- include (`./demo/${page}`) %>
+      </section>
+      <form id="logout" method="post" action="/logout" id="logot">
+        <input type="submit" value="Logout" id="getStarted">
+      </form>
+    </main>
+    
+      <div id="colorP">
+        <div>
+          Change Background Color <input type="color" id="inpColor">
+        <hr>
+        </div>
+        <div>
+          Change Font Color <input type="color" id="fontColor">
+        </div>
+        <div>
+        <hr>
+            <button id="reset">RESET</button>
+        </div>
+      </div>
+    
+    <script src="index.js"></script>
+  </body>
+</html>

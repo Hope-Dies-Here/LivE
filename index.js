@@ -8,10 +8,12 @@ const ejs = require("ejs")
 const bodyParser = require("body-parser")
 const app = express()
 const router = require("./Router/router.js")
+const demo = require("./Router/demo.js")
 const port = process.env.PORT || 3000
 require("dotenv").config()
 
-const dbString = process.env.DB_STRING 
+// const dbString = process.env.DB_STRING 
+const dbString = process.env.LOCAL_DB_STRING
 mongoose.connect(dbString)
 const db = mongoose.connection
 // db.on("error", console.log("error connecting db"))
@@ -38,4 +40,5 @@ app.use(helmet())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static('public'))
 app.use("/", router)
+app.use("/demo", demo)
 
