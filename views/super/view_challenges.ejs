@@ -1,0 +1,15 @@
+<h2>Challenges</h2>
+<% chs.forEach(challenge => { %>
+  <div style="display: flex; align-items: center; gap: 2em">
+    <form>
+      <p> <%= challenge.name %> </p>
+    </form>
+    <form method="post" action="/demo/sup/del-ch/<%= challenge._id %>">
+      <input type="submit" value="Delete">
+    </form>
+    <form method="get" action="/demo/sup/edit-ch/<%= challenge._id %>">
+      <input type="submit" value="Edit">
+    </form>
+  </div>
+  <hr>
+<% }) %>

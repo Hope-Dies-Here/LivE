@@ -1,0 +1,14 @@
+<h2>Edit Challenge </h2>
+<form method="post" action="/demo/update-challenge/<%=db._id %>"> 
+  Challenge Name <input type="text" name="name" value="<%=db.name%>"> <br> <br>
+  Challenge Description <input type="text" name="desc" value="<%=db.description%>"> <br><br>
+  Challenge Status
+  <select name="status">
+    <option value="" disabled selected hidden> Status Options </option>
+    <option value="Open">Open</option>
+    <option value="Closed">Closed</option>
+    <option value="Pending">Pending</option>
+  </select> <sub> (<%=db.status%>)  </sub> <br><br>
+  Challenge Deadline <input type="text" name="deadline" value="<%=db.deadline%>"> <br><br>
+  <input type="submit" value="Update"> 
+</form>

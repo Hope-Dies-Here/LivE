@@ -1,10 +1,21 @@
-<form id="login-form">
+<form id="login-form" method="post" action="/demo/users/login">
+  <div id="err-place">
+    <% typeof errors != "undefined" ? errors.forEach(error => { %>
+      <p class="alert-warning"> <%= error.msg %> </p> 
+    <% }) : "" %>
+    <% if(login_err_msg != "") {  %>
+      <p class="alert-warning"> <%= login_err_msg %> </p> 
+    <% } %>
+  </div>
   <h3>Login</h3>
   <div id="form-inputs">
     <label>Username</label>
-    <input type="text" id="username-input">
+    <input type="text" name="username" class="inputinput" id="username-input" value="<%=  (err_username != "") ? err_username : "" %>" >
     <label>Password</label>
-    <input type="text" id="password-input">
-    <input type="submit" value="Login" id="login-btn">
+    <input name="password" class="inputinput" type="password" id="password-input" value="<%=  (err_password != "") ? err_password : "" %>">
+    <div id="log-reg-btns">
+      <input type="submit" value="Login" class="login-btn btn">
+      <!-- <button class="login-btn"><a href="register">Register</a> </button> -->
+    </div>
   </div>
 </form>

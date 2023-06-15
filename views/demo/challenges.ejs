@@ -1,101 +1,28 @@
 <div class="challenges">
     <h3 id="title" class="theFont">Completed Challenges</h3>
   <div class="allinone">
-    <div class="card">
-      <div class="img">
-        <img src="https://picsum.photos/200/300?random=1" alt="" />
-      </div>
-      <div class="textBox">
-        <div class="textContent">
-          <p class="h1"><span>Web Clone Challenge</span></p>
-          <sub> Open </sub>
-          <button class="btn">Visit</button>
+    
+    <% let i = 1 %>
+    <% db.forEach(ch => { %>
+      <div class="card">
+        <div class="img">
+          <img src="https://picsum.photos/20/30?random=<%= i %>" alt="" />
+          <% i++ %>
+        </div>
+        <div class="textBox">
+          <div class="textContent">
+            <p class="h1"><span><%= ch.name %> </span></p>
+            <% if(ch.status == "Open") { %>
+              <sub style="color: green"> <%= ch.status %> </sub>
+            <% } else if(ch.status == "Pending") { %>
+              <sub style="color: gray"> <%= ch.status %> </sub>
+            <% } else { %>  
+              <sub style="color: red"> <%= ch.status %> </sub>
+            <% } %>  
+              <button class="btn"> <a href="details?name=<%= ch.name %> "> View More </a> </button>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="card">
-      <div class="img">
-        <img src="https://picsum.photos/200/300?random=3" alt="" />
-      </div>
-      <div class="textBox">
-        <div class="textContent">
-          <p class="h1"><span>Counter App </span></p>
-          <sub><span>Closed</span></sub>
-          <button class="btn">Visit</button>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="img">
-        <img src="./img-p/Artboard 3.png" alt="" />
-      </div>
-      <div class="textBox">
-        <div class="textContent">
-          <p class="h1"><span>Movie Site </span></p>
-          <sub>By <span>B_Smile </span></sub>
-          <button class="btn">Visit</button>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="img">
-        <img src="./img-p/Artboard 4.png" alt="" />
-      </div>
-      <div class="textBox">
-        <div class="textContent">
-          <p class="h1"><span>Four Eyes Clone</span></p>
-          <sub>By Dummy</sub>
-          <button class="btn">Visit</button>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="img">
-        <img src="./img-p/Artboard 5.png" alt="" />
-      </div>
-      <div class="textBox">
-        <div class="textContent">
-          <p class="h1"><span>Validation </span></p>
-          <sub>By User </sub>
-          <button class="btn">Visit</button>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="img">
-        <img src="https://picsum.photos/200/300?random=2" alt="" />
-      </div>
-      <div class="textBox">
-        <div class="textContent">
-          <p class="h1"><span>Pateint </span></p>
-          <sub>By Zlelew</sub>
-          <button class="btn">Visit</button>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="img">
-        <img src="./img-p/Artboard 7.png" alt="" />
-      </div>
-      <div class="textBox">
-        <div class="textContent">
-          <p class="h1">App Downloader</p>
-          <sub>By <span>B_Smile</span></sub>
-          <button class="btn">Visit</button>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="img">
-        <img src="./img-p/Artboard 7.png" alt="" />
-      </div>
-      <div class="textBox">
-        <div class="textContent">
-          <p class="h1">App Downloader</p>
-          <sub>By <span>B_Smile</span></sub>
-          <button class="btn">Visit</button>
-        </div>
-      </div>
-    </div>
+    <% }) %>
   </div>
 </div>

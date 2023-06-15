@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <!-- 
     <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+    <!-- 
     
-    -->
     <meta name="viewport" content="width=1380" />
-    <link rel="stylesheet" href="/demo.css" />
+    -->
+    <link rel="stylesheet" type="text/css" href="/demo.css" />
     <title><title></title>
     
   </head>
@@ -22,12 +22,18 @@
             </div>
 
             <div class="navigations theFont" >
-              <a href="/demo">Home</a>
-              <a href="/demo/profile">Profile</a>
-              <a href="/demo/submit">Submit</a>
-              <a href="/demo/challenges">Challeges</a>
-              <a href="#">Leaderboard</a>
-              <a href="/demo/login">Login</a>
+                <a href="/demo">Home</a>
+              <% if(auth) { %>
+                <a href="/demo/profile">Profile</a>
+                <a href="/demo/submit">Submit</a>
+              <% } %>
+                <a href="/demo/challenges">Challeges</a>
+                <a href="#">Leaderboard</a>
+              <%if(auth) { %>
+                <a href="/demo/profile" style="color: ; opacity: .7"><%= userData.name %> </a>
+              <% } else { %>
+                <a href="/demo/users/login">Login</a>
+              <% } %>
             </div>
           </nav>
         </div>
@@ -35,11 +41,13 @@
       <section class="home-section">
         <%- include (`./demo/${page}`) %>
       </section>
-      <form id="logout" method="post" action="/logout" id="logot">
-        <input type="submit" value="Logout" id="getStarted">
-      </form>
+      <% if(auth) { %>
+        <form id="logout" method="post" action="/demo/logout" id="logot">
+          <input type="submit" value="Logout" id="getStarted">
+        </form>
+      <% } %>
     </main>
-    
+    <!-- 
       <div id="colorP">
         <div>
           Change Background Color <input type="color" id="inpColor">
@@ -52,8 +60,30 @@
         <hr>
             <button id="reset">RESET</button>
         </div>
-      </div>
-    
-    <script src="index.js"></script>
+      </div> -->
+    <script src="/js/<%=page%>.js"></script>
   </body>
 </html>
+<!-- 
+Sure, here are 10 examples of sarcastic and funny 1-year work anniversary messages:
+
+1. "Wow, can you believe it's only been a year? It feels like we've been working together for at least a decade."
+
+2. "Congratulations, you've survived a whole year of our company's shenanigans. Here's to many more!"
+
+3. "Happy work-iversary! I can't believe you've put up with us for this long."
+
+4. "It's been a year already? I guess time flies when you're having... well, let's just say time flies."
+
+5. "Congrats on reaching the one-year mark! You've earned a whole extra day of vacation time... just kidding, we're not that generous."
+
+6. "Who knew you could put up with us for a year? You deserve a medal or at least a stiff drink."
+
+7. "Happy 1-year work-iversary! I'm surprised you haven't quit yet, but hey, more power to you."
+
+8. "A year of working together? Well, at least we haven't killed each other... yet."
+
+9. "Happy anniversary! You've made it through 365 days of office politics and drama. Here's to another year of the same."
+l10. "Congratulations on your one-year work-iversary! We're so glad you stuck around to see how this dumpster fire of a company turns out."
+
+Remember to use these types of messages with caution and only with colleagues who have a good sense of humor and are comfortable with sarcasm. -->

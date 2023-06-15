@@ -1,0 +1,45 @@
+  <div id="sub-desc">
+    <% if(typeof challengeDetail != "undefined") { %>
+      <h3>Challenge Name: <%= challengeDetail.name %> </h3>
+    <ul>
+      <li> Description: <%= challengeDetail.description %> </li>
+      <li> Status: <%= challengeDetail.status %> </li>
+      <li> Deadline: <%= challengeDetail.deadline %> </li>
+    </ul>
+      Submit your link <em><a href="/demo/submit">Here</a> </em>
+    </div>
+    <div id="ul">
+      <% if(suc_msg != "") { %>
+        <p class="alert-suc"><%= suc_msg %></p>
+      <% } %>
+      <h3>All Submited Challenges</h3>
+      <% db.forEach(data => { %>
+        <ul>
+          <li>
+            Title: <%=data.titleName%>
+          </li>
+          <li>
+            Posted By: <%= `${data.owner.firstName} ${data.owner.lastName} `%>
+          </li>
+          <li>
+            Challenge Link: <a href="<%= data.challengeLink %>"> Click Here To Visit
+            </a>
+          </li>
+          <li>
+            Posted Date: 12/03/2023 G.C
+          </li>
+          <% if(typeof userData != "undefined" && data.owner.username == userData.username) { %>
+          <div id="edit-delete-ch">
+            <a style="color: yellow" href="/demo/edit-challenge?id=<%= data._id %>"> Edit </a>
+            <button class="del-btn" data-from="<%=challengeDetail.name %>" data-id="<%=data._id%>">
+              <span style="color: " class="dat"> Delete </span>
+            </button>
+            <% if(challengeDetail.name == "Other Links"){ %>
+            <% } %>
+          </div>
+          <% } %>
+        </ul>
+        <hr>
+       <% }) %>
+      <% } %>
+  </div>

@@ -7,27 +7,21 @@
     <li> Choose which challenge link you want to upload before submiting</li>
   </ul>
 </div>
-<form method="post" action="/demo/submit-challenge" id="the-form">
-  <%- include (`../demo/msg.ejs`) %>
-  <h3>Submit Your Link</h3>
+<form method="post" action="/demo/update-challenge" id="the-form">
+  <h3>Edit Your Link</h3>
   <div id="link">
     <div id="name-input-cont">
       <label for="">Web Name: </label>
-      <input type="text" placeholder="Project Name" id="name-input" name="name">
+      <input type="text" value="<%=targetCh._id %>" id="name-input" name="name">
     </div>
-    <input type="text" placeholder="Your Link..." id="link-input" name="link"> 
+    <input type="text" value="<%=targetCh.challengeLink %>" id="link-input" name="link">
   </div>
   <div id="submit-bottom">
     <select id="select-ch" name="challenge" required>
-      <option value="" disabled selected hidden> Available Challenges </option>
-        <% db.forEach(ch => { %>
-          <% if(ch.status == "Open") { %>
-            <option value="<%=ch._id %>">
-              <%= ch.name %>
-            </option>
-          <% } %>
-        <% }) %>
-          </select>
+        <option selected value="<%= targetCh.challengeName.name %>">
+          <%=targetCh.challengeName.name %> 
+        </option>
+      </select>
     <button type="submit" id="submit-link-btn">Submit</button>
   </div>
 </form>
