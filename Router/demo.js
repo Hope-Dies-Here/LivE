@@ -224,6 +224,7 @@ demo.post("/users/login", async (req, res) => {
   const errors = [];
   if (username == "aidmn" && password == "a") {
     req.session.superAuth = true;
+    req.session.save
     res.redirect("/demo/super-admin-baby");
   } else {
     const foundUser = await users.findOne({ username: username });
@@ -248,6 +249,7 @@ demo.post("/users/login", async (req, res) => {
             };
             req.session.username = username;
             req.session.auth = true;
+            req.session.save()
             res.redirect(returnUrl);
           }
         });
