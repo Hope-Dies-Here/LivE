@@ -276,7 +276,7 @@ demo.get("/register", (req, res) => {
   });
 });
 demo.post("/register", (req, res) => {
-  return res.json({err: "noooo"})
+  //return res.json({err: "noooo"})
   const passwd = req.body.password;
   bcrypt.genSalt(10, (err, salt) => {
     bcrypt.hash(passwd, salt, async (err, hash) => {
