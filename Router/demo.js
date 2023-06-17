@@ -321,8 +321,8 @@ demo.post("/sup/post-challenge", superAuth, async (req, res) => {
   try {
     const data = new challenges({
       name: the.challengeName,
-      desc: the.description,
-      status: the.challengeStatus,
+      description: the.desc,
+      status: the.status,
       deadline: the.challengeDeadline,
     });
     await data.save();
