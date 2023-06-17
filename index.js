@@ -16,7 +16,7 @@ require("dotenv").config()
 
 
 // const dbString = process.env.DB_STRING 
-const dbString = process.env.LOCAL_DB_STRING
+const dbString = process.env.DB_STRING
 mongoose.connect(dbString)
   .then(() => {
     console.log("database connected");
