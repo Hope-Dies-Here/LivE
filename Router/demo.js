@@ -224,7 +224,7 @@ demo.post("/users/login", async (req, res) => {
   const errors = [];
   if (username == "aidmn" && password == "a") {
     req.session.superAuth = true;
-    req.session.save
+    req.session.save()
     res.redirect("/demo/super-admin-baby");
   } else {
     const foundUser = await users.findOne({ username: username });
@@ -269,7 +269,7 @@ demo.post("/users/login", async (req, res) => {
 });
 
 //register page
-demo.get("/register", (req, res) => {
+demo.get("/register", superAuth, (req, res) => {
   //return res.json({err: "noooo"})
   res.render("demo", {
     page: "register",
@@ -277,7 +277,7 @@ demo.get("/register", (req, res) => {
     userData: req.session.userData,
   });
 });
-demo.post("/register", (req, res) => {
+demo.post("/register", superAuth, (req, res) => {
   //return res.json({err: "noooo"})
   const passwd = req.body.password;
   bcrypt.genSalt(10, (err, salt) => {
