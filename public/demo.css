@@ -56,10 +56,10 @@ main {
   justify-content: space-between;
   padding-inline: 4em;
   align-items: center;
-  height: 5em;
+  height: 5rem;
 }
 .main-tittle h3 {
-  font-size: 1em;
+  font-size: 1.2em;
   color: #ffffff;
 }
 
@@ -83,6 +83,7 @@ main {
 .navigations a {
   color: inherit;
   margin-inline: 1em;
+  font-size: .85rem;
 }
 /* main section */
 .home-section{
