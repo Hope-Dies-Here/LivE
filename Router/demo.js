@@ -267,7 +267,7 @@ demo.post("/users/login", async (req, res) => {
 });
 
 //register page
-demo.get("/register", superAuth, (req, res) => {
+demo.get("/register", (req, res) => {
   //return res.json({err: "noooo"})
   res.render("demo", {
     page: "register",
