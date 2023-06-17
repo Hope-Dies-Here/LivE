@@ -1,10 +1,10 @@
 <div id="profile-left">
   <div id="profile-intro">
     <img src="/img/user.svg"/>
-    <h1> <%= `${userData.name}  ${userData.lastName}` %> </h1>
+    <h1> <%= `${userData.firstName}  ${userData.lastName}` %> </h1>
   </div>
   <div id="profile-details">
-    <p>Full Name: <%= `${userData.name}  ${userData.lastName}` %> </p>
+    <p>Full Name: <%= `${userData.firstName}  ${userData.lastName}` %> </p>
     <p>Username: <%= userData.username %> </p>
     <p>Completed Challenges: <%= userCompletedChallenges.length %> </p>
     <p>User Badge: Biggner</p>
@@ -19,7 +19,7 @@
         <!-- <img src="https://picsum.photos/20/30?random=<%= /* i */ %>" alt="" /> -->
         <%i++%>
         <p><%= project.titleName %></p>
-        <p>⭐⭐</p>
+        <p> 3.5⭐ </p>
         <a href="<%= project.challengeLink %>">Visit</a>
       </div>
       <% }) %>

@@ -42,13 +42,13 @@ main {
   background-size: 400% 200%;
   width: 85%;
   overflow-y: auto;
-  border: 1px solid gray;
+  border: 2px solid white;
   /* min-height: 80%; */
   max-height: 35rem;
   height: 35rem;
   /* min-height: 30rem; */
-  border-radius: 15px;
-  box-shadow: 3px 8px 30px rgba(0, 0, 0, .3);
+  border-radius: 10px;
+  box-shadow: 5px 8px 30px rgba(0, 0, 0, .3);
 }
 
 .navbar {
@@ -94,7 +94,9 @@ main {
   height: 75%;
   overflow: auto;
   color: white;
-  border: 1px solid white;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  border-radius: 2px;
 }
 img {
   width: 3em;
@@ -285,11 +287,12 @@ button:hover{
   border-radius: 10px;
   border: 1px solid white;
   display: grid;
-  grid-template-columns: .5fr 2fr .5fr;
+  grid-template-columns: 2fr 1fr .5fr;
   padding-inline: 2em;
   align-items: center;
 }
-
+.profile-projects {
+}
 .profile-projects img{
   height: 2rem;
   width: 2rem;
@@ -447,6 +450,9 @@ button:hover{
  justify-content: space-between;
  width: 40%;
 }
+#owner-link{
+  color: #fff;
+}
 .del-btn{
   background: none;
   border: none;
@@ -492,7 +498,7 @@ hr{
   padding-block: .4em;
   font-size: .8rem;
 }
-#ul ul li a{
+#ul #visit-link{
   color: gold;
   font-size: .8rem;
 }

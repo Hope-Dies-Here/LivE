@@ -19,10 +19,12 @@
             Title: <%=data.titleName%>
           </li>
           <li>
-            Posted By: <%= `${data.owner.firstName} ${data.owner.lastName} `%>
+            Posted By: <a href="/demo/user?name=<%=data.owner.username%>" id="owner-link">
+              <%= `${data.owner.firstName} ${data.owner.lastName} `%>
+            </a> 
           </li>
           <li>
-            Challenge Link: <a href="<%= data.challengeLink %>"> Click Here To Visit
+            Challenge Link: <a id="visit-link" href="<%= data.challengeLink %>"> Click Here To Visit
             </a>
           </li>
           <li>

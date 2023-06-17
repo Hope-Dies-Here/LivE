@@ -1,4 +1,4 @@
-<form id="login-form" method="post" action="/demo/users/login">
+<form id="login-form" method="post" action="/demo/users/login?return=<%=returnUrl%>">
   <div id="err-place">
     <% typeof errors != "undefined" ? errors.forEach(error => { %>
       <p class="alert-warning"> <%= error.msg %> </p> 

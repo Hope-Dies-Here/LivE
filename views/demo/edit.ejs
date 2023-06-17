@@ -11,8 +11,9 @@
   <h3>Edit Your Link</h3>
   <div id="link">
     <div id="name-input-cont">
+      <input type="text" value="<%=  targetCh._id %>" name="id" style="display: none">
       <label for="">Web Name: </label>
-      <input type="text" value="<%=targetCh._id %>" id="name-input" name="name">
+      <input type="text" data-val="" value="<%=  targetCh.titleName %>" id="name-input" name="name">
     </div>
     <input type="text" value="<%=targetCh.challengeLink %>" id="link-input" name="link">
   </div>
