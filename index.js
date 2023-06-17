@@ -63,7 +63,7 @@ app.use((req, res, next) => {
 app.set("view engine", "ejs")
 app.set("views", "views")
 
-// app.use(compression())
+app.use(compression())
 // app.use(helmet())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, 'public')))
