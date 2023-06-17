@@ -61,12 +61,14 @@ app.use((req, res, next) => {
 })
 
 app.set("view engine", "ejs")
-app.set("views", "views")
+//app.set("views", "views")
+app.set("views", path.join(__dirname, "views"));
 
 app.use(compression())
 // app.use(helmet())
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(__dirname + "/public/"));
+//app.use(express.static(path.join(__dirname, 'public')))
 // app.use("/", router)
 app.use("/demo", demo)
 
