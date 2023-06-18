@@ -218,7 +218,6 @@ demo.get("/users/login", (req, res) => {
 });
 
 demo.post("/users/login", async (req, res) => {
-  console.log(req.query.return)
   const returnUrl = req.query.return
   const { username, password } = req.body;
   const errors = [];
