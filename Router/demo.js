@@ -205,6 +205,7 @@ demo.get("/delete-challenge", checkAuth, async (req, res) => {
     console.log(err)
   }
 })
+
 //login page
 demo.get("/users/login", (req, res) => {
   if(req.session.auth) return res.redirect("/demo")
