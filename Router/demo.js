@@ -1,6 +1,6 @@
 const express = require("express");
 const demo = express.Router();
-const testRoute = require("./sub-router/test.js")
+const testRoute = require("./sub-router/test.js");
 const bcrypt = require("bcryptjs");
 const challenges = require("../Demo-Models/challenges.js");
 const completedCh = require("../Demo-Models/completedCh.js");
@@ -37,51 +37,50 @@ demo.get("/", (req, res) => {
 
 //profile page
 demo.get("/profile", checkAuth, async (req, res) => {
-  try{
-    
+  try {
     const curUser = await users.findOne({ username: req.session.username });
     const userCompletedChallenges = await completedCh
       .find({ owner: curUser._id })
       .sort({ $natural: -1 })
       .populate("challengeName");
-      res.render("demo", {
-        page: "profile",
-        auth: req.session.auth,
-        userData: req.session.userData,
-        userCompletedChallenges,
-      });
-  } catch(err) {
-    console.log(err)
-    res.status(500).json({ msg: "couldn't fetch from database, try again."})
+    res.render("demo", {
+      page: "profile",
+      auth: req.session.auth,
+      userData: req.session.userData,
+      userCompletedChallenges,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ msg: "couldn't fetch from database, try again." });
   }
 });
 
 //user profile
-demo.get("/user", async(req, res) => {
-  try{
-    if(req.session.auth && req.query.name == req.session.userData.username){
-      return res.redirect("/demo/profile")
+demo.get("/user", async (req, res) => {
+  try {
+    if (req.session.auth && req.query.name == req.session.userData.username) {
+      return res.redirect("/demo/profile");
     }
     const curUser = await users.findOne({ username: req.query.name });
     const userCompletedChallenges = await completedCh
       .find({ owner: curUser._id })
       .sort({ $natural: -1 })
       .populate("challengeName");
-      res.render("demo", {
-        page: "userProfile",
-        auth: req.session.auth,
-        userData: curUser,
-        userCompletedChallenges,
-      });
-  } catch(err) {
-    console.log(err)
-    res.status(500).json({ msg: "couldn't fetch from database, try again."})
+    res.render("demo", {
+      page: "userProfile",
+      auth: req.session.auth,
+      userData: curUser,
+      userCompletedChallenges,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ msg: "couldn't fetch from database, try again." });
   }
-})
+});
 
 //submit page
 demo.get("/submit", checkAuth, async (req, res) => {
-  try{
+  try {
     const db = await challenges.find().sort({ $natural: -1 });
     res.render("demo", {
       page: "submit",
@@ -89,40 +88,44 @@ demo.get("/submit", checkAuth, async (req, res) => {
       auth: req.session.auth,
       userData: req.session.userData,
     });
-  } catch(err){
-    console.log(`err from get./submit rout ${err}`)
-    res.status(500).json({msg: "couldn't fetch data from db, try again maybe."})
+  } catch (err) {
+    console.log(`err from get./submit rout ${err}`);
+    res
+      .status(500)
+      .json({ msg: "couldn't fetch data from db, try again maybe." });
   }
 });
 demo.post("/submit-challenge", checkAuth, async (req, res) => {
   try {
     const chName = await challenges.findOne({ _id: req.body.challenge });
-    if(chName.status == "Open"){
+    if (chName.status == "Open") {
       const owner = await users.findOne({ username: req.session.username });
-      const challengeId = chName.id
-      const ownerId = owner.id
+      const challengeId = chName.id;
+      const ownerId = owner.id;
       const link = req.body.link;
       const data = new completedCh({
         challengeName: challengeId,
         challengeLink: link,
         owner: ownerId,
-        titleName: req.body.name
+        titleName: req.body.name,
       });
       await data.save();
-      req.flash("suc_msg", "Your link has submitted")
+      req.flash("suc_msg", "Your link has submitted");
       res.redirect(`/demo/details?name=${chName.name}`);
     } else {
-      const err = new Error("Nice Try Buddy, I Got This One. Try Lela")
+      const err = new Error("Nice Try Buddy, I Got This One. Try Lela");
     }
   } catch (err) {
-    console.log(`err from post/submit-challenge ${err}`)
-    res.status(500).json({ msg: "err while submiting yor item try again later" });
+    console.log(`err from post/submit-challenge ${err}`);
+    res
+      .status(500)
+      .json({ msg: "err while submiting yor item try again later" });
   }
 });
 
 // challenges page
 demo.get("/challenges", async (req, res) => {
-  try{
+  try {
     const db = await challenges.find().sort({ $natural: -1 });
     res.render("demo", {
       page: "challenges",
@@ -130,34 +133,42 @@ demo.get("/challenges", async (req, res) => {
       auth: req.session.auth,
       userData: req.session.userData,
     });
-  } catch(err){
-    res.status(500).json({ msg: "err while submiting yor item try again later" });
+  } catch (err) {
+    res
+      .status(500)
+      .json({ msg: "err while submiting yor item try again later" });
   }
 });
 
 //submitted challenges
 demo.get("/details", async (req, res) => {
-  try{
+  try {
+    if (!req.query.name) {
+      res.status(400).json({ msg: "Name parameter is missing" });
+      return;
+    }
     const challengeDetail = await challenges.findOne({ name: req.query.name });
     const chName = await completedCh
       .find()
       .sort({ $natural: -1 })
       .populate("challengeName")
       .populate("owner");
-    console.log("still working")
     const allCompletedChallenges = chName.filter(
       (ch) => ch.challengeName.name == req.query.name
     );
+    console.log("still working");
+    console.log(chName);
+    console.log(allCompletedChallenges);
     res.render("demo", {
       page: "submittedChes",
       db: allCompletedChallenges,
       auth: req.session.auth,
       userData: req.session.userData,
-      challengeDetail
+      challengeDetail,
     });
-  } catch(err) {
-    console.log(`err at get/details ${err}`)
-    res.status(500).json({msg: "couldn't fetch details from db, try again"})
+  } catch (err) {
+    console.log(`err at get/details ${err}`);
+    res.status(500).json({ msg: "couldn't fetch details from db, try again" });
   }
 });
 
@@ -168,7 +179,8 @@ demo.get("/edit-challenge", checkAuth, async (req, res) => {
       .findOne({ _id: req.query.id })
       .populate("challengeName")
       .populate("owner");
-      if(targetCh.owner.username != req.session.username) return res.redirect("/demo")
+    if (targetCh.owner.username != req.session.username)
+      return res.redirect("/demo");
     res.render("demo", {
       page: "edit",
       targetCh,
@@ -177,40 +189,43 @@ demo.get("/edit-challenge", checkAuth, async (req, res) => {
     });
   } catch (err) {
     console.log(`err from edit challenges get ${err}`);
-    res.status(500).json({msg: "couldn't get details, try again"})
-    
+    res.status(500).json({ msg: "couldn't get details, try again" });
   }
 });
 
 //update ch "POST"
-demo.post("/update-challenge", checkAuth, async(req, res) => {
-  try{
-    const updatedData = await completedCh.findOneAndUpdate({ _id: req.body.id }, { titleName: req.body.name, challengeLink: req.body.link }, { new: true })
-      console.log(updatedData)
-      req.flash("suc_msg", "Data updated successfully")
-      res.redirect(`/demo/details?name=${req.body.challenge}`)
-    const db = await completedCh.find()
-  } catch(err){
-    console.log(err)
-    res.redirect("/challenges")
+demo.post("/update-challenge", checkAuth, async (req, res) => {
+  try {
+    const updatedData = await completedCh.findOneAndUpdate(
+      { _id: req.body.id },
+      { titleName: req.body.name, challengeLink: req.body.link },
+      { new: true }
+    );
+    console.log(updatedData);
+    req.flash("suc_msg", "Data updated successfully");
+    res.redirect(`/demo/details?name=${req.body.challenge}`);
+    const db = await completedCh.find();
+  } catch (err) {
+    console.log(err);
+    res.redirect("/challenges");
   }
-})
+});
 
 //delete challenge
 demo.get("/delete-challenge", checkAuth, async (req, res) => {
-  try{
-    await completedCh.deleteOne({ _id: req.query.id })
-    req.flash("suc_msg", "Item deleted")
-    res.redirect(`/demo/details?name=${req.query.from}`)
-  } catch(err){
-    console.log(err)
+  try {
+    await completedCh.deleteOne({ _id: req.query.id });
+    req.flash("suc_msg", "Item deleted");
+    res.redirect(`/demo/details?name=${req.query.from}`);
+  } catch (err) {
+    console.log(err);
   }
-})
+});
 
 //login page
 demo.get("/users/login", (req, res) => {
-  if(req.session.auth) return res.redirect("/demo")
-  const returnUrl = req.query.return || '/demo'
+  if (req.session.auth) return res.redirect("/demo");
+  const returnUrl = req.query.return || "/demo";
   res.render("demo", {
     page: "login",
     auth: req.session.auth,
@@ -220,12 +235,12 @@ demo.get("/users/login", (req, res) => {
 });
 
 demo.post("/users/login", async (req, res) => {
-  const returnUrl = req.query.return
+  const returnUrl = req.query.return;
   const { username, password } = req.body;
   const errors = [];
   if (username == "aidmn" && password == "a") {
     req.session.superAuth = true;
-    req.session.save()
+    req.session.save();
     res.redirect("/demo/super-admin-baby");
   } else {
     const foundUser = await users.findOne({ username: username });
@@ -250,7 +265,7 @@ demo.post("/users/login", async (req, res) => {
             };
             req.session.username = username;
             req.session.auth = true;
-            req.session.save()
+            req.session.save();
             res.redirect(returnUrl);
           }
         });
@@ -265,7 +280,6 @@ demo.post("/users/login", async (req, res) => {
       //Handle other errors
       res.status(500).json({ msg: "login err", err: err });
     }
-  
   }
 });
 
@@ -303,8 +317,8 @@ demo.post("/logout", (req, res) => {
 
 // SUP
 demo.get("/sup", superAuth, (req, rea) => {
-  res.redirect("/super-admin-baby")
-})
+  res.redirect("/super-admin-baby");
+});
 demo.get("/super-admin-baby", superAuth, (req, res) => {
   res.render("super", { page: "home" });
 });
@@ -328,29 +342,28 @@ demo.post("/sup/post-challenge", superAuth, async (req, res) => {
     });
     await data.save();
     console.log("data insrted successfully");
-    res.status(200).json({msg: "yaaaaaaaay inserted"});
+    res.status(200).json({ msg: "yaaaaaaaay inserted" });
   } catch (err) {
     console.log("data not inserted", err);
-    res.status(500).json({msg: "opppppps kodaw, data not inserted"});
+    res.status(500).json({ msg: "opppppps kodaw, data not inserted" });
   }
 });
 //view chalenges
 demo.get("/sup/view-challenges", superAuth, async (req, res) => {
-  try{
-    
+  try {
     const chs = await challenges.find().sort({ $natural: -1 });
     res.render("super", { page: "view_challenges", chs });
-  } catch(err){
-    console.log(err)
+  } catch (err) {
+    console.log(err);
   }
 });
 // edit challenges
 demo.get("/sup/edit-ch/:id", superAuth, async (req, res) => {
-  try{
+  try {
     const db = await challenges.findOne({ _id: req.params.id });
     res.render("super", { page: "edit_ch", db });
-  } catch(err){
-    console.log(err)
+  } catch (err) {
+    console.log(err);
   }
 });
 //update challenges
