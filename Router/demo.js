@@ -153,12 +153,11 @@ demo.get("/details", async (req, res) => {
       .sort({ $natural: -1 })
       .populate("challengeName")
       .populate("owner");
+      console.log(chName)
     const allCompletedChallenges = chName.filter(
       (ch) => ch.challengeName.name == req.query.name
     );
     console.log("still working");
-    console.log(chName);
-    console.log(allCompletedChallenges);
     res.render("demo", {
       page: "submittedChes",
       db: allCompletedChallenges,

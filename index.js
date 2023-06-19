@@ -43,8 +43,8 @@ db.on("error", (error) => {
 app.use(
   session({
     secret: process.env.SESSION_KEY,
-    cookie: { maxAge: 86400000 },
-    store: MongoStore.create({ mongoUrl: dbString }),
+    cookie: { maxAge: 7200000 },
+    store: MongoStore.create({ mongoUrl: dbString, }),
     resave: false,
     saveUninitialized: true,
     //store: new MemoryStore({ checkPeriod: 86400000 }),
