@@ -144,6 +144,7 @@ demo.get("/details", async (req, res) => {
       .sort({ $natural: -1 })
       .populate("challengeName")
       .populate("owner");
+    console.log("still working")
     const allCompletedChallenges = chName.filter(
       (ch) => ch.challengeName.name == req.query.name
     );
