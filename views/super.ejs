@@ -1,5 +1,11 @@
-<h1>Shadow Realm</h1>
-<ul>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+    <title>ShadoRealm</title>
+  </head>
+  <body>
+    <h1>Shadow Realm</h1>
+    <ul>
       <li>
         <a href="/demo/super-admin-baby">Home</a>
       </li>
@@ -14,9 +20,12 @@
       </li>
     </ul>
     <hr>
-<div>
-  <%- include(`./super/${page}`) %>
-  <form method="post" action="/demo/logout">
-    <input type="submit" value="Logot">
-  </form>
-</div>
+    <div>
+      <%- include(`./super/${page}`) %>
+      <form method="post" action="/demo/logout">
+        <input type="submit" value="Logot">
+      </form>
+    </div>
+    
+  </body>
+</html>

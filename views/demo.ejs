@@ -4,13 +4,15 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- 
-    <meta name="viewport" content="width=device-width, initial-scale=1" /> 
     
     -->
-    <meta name="viewport" content="width=1380" />
+    <!-- <meta name="viewport" content="width=720" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" /> 
     <link rel="stylesheet" type="text/css" href="/demo.css" />
     <title><title></title>
-    
+    <style>
+      
+    </style>
   </head>
   <body>
     <main id="main">
@@ -24,13 +26,13 @@
             <div class="navigations theFont" >
                 <a href="/demo">Home</a>
               <% if(auth) { %>
-                <a href="/demo/profile">Profile</a>
+                <a id="profile-nav" href="/demo/profile">Profile</a>
                 <a href="/demo/submit">Submit</a>
               <% } %>
                 <a href="/demo/challenges">Challeges</a>
                 <a href="#">Leaderboard</a>
               <%if(auth) { %>
-                <a href="/demo/profile" style="color: ; opacity: .7"><%= userData.name %> </a>
+                <a id="name-prof" href="/demo/profile" style="color: ; opacity: .7"><%= userData.name %> </a>
               <% } else { %>
                 <a href="/demo/users/login">Login</a>
               <% } %>
@@ -39,15 +41,20 @@
         </div>
       </section>
       <section class="home-section">
+        <div class="page-title-container" id="li">
+            <p data-value='<%= pageTitle %>' data-initial='<%= pageTitle %>' class="page-title" id="page-title">
+              <%= pageTitle %>
+            </p>
+        </div>
         <%- include (`./demo/${page}`) %>
       </section>
       <% if(auth) { %>
         <form id="logout" method="post" action="/demo/logout" id="logot">
-          <input type="submit" value="Logout" id="getStarted">
+          <input type="submit" value="Logout" id="logout-btn" class="small-btn">
         </form>
       <% } %>
     </main>
-    <!-- 
+    
       <div id="colorP">
         <div>
           Change Background Color <input type="color" id="inpColor">
@@ -60,7 +67,11 @@
         <hr>
             <button id="reset">RESET</button>
         </div>
-      </div> -->
+      </div> 
+      
+    <script src="/js/jquery.js"></script>
+    <script src="/js/theQueryFile.js"></script>
+    <script src="/img/index.js"></script>
     <script src="/js/<%=page%>.js"></script>
   </body>
 </html>

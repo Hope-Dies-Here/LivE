@@ -1,45 +1,99 @@
   <div id="sub-desc">
     <% if(typeof challengeDetail != "undefined") { %>
-      <h3>Challenge Name: <%= challengeDetail.name %> </h3>
+      <h3 class="detail-ch-name">Challenge Name: <%= challengeDetail.name %> </h3>
     <ul>
       <li> Description: <%= challengeDetail.description %> </li>
       <li> Status: <%= challengeDetail.status %> </li>
       <li> Deadline: <%= challengeDetail.deadline %> </li>
+      <li> Total Submitted: <%= db.length %> </li>
+      
     </ul>
-      Submit your link <em><a href="/demo/submit">Here</a> </em>
+      Submit your link <em><a style="font-weight:600; color:white" href="/demo/submit">Here ~></a> </em>
     </div>
     <div id="ul">
       <% if(suc_msg != "") { %>
         <p class="alert-suc"><%= suc_msg %></p>
       <% } %>
-      <h3>All Submited Challenges</h3>
+      <h3 style="text-align: center">All Submited Challenges</h3> <hr>
+      <% if (db.length == 0) { %>
+         <div id="no-submit">
+            <p> whooops ... 💀</p>
+            <h2> 
+              No Challenges Has Submitted <br> Yet
+            </h2>
+         </div>
+      <% } %>
       <% db.forEach(data => { %>
         <ul>
-          <li>
-            Title: <%=data.titleName%>
-          </li>
           <li>
             Posted By: <a href="/demo/user?name=<%=data.owner.username%>" id="owner-link">
               <%= `${data.owner.firstName} ${data.owner.lastName} `%>
             </a> 
           </li>
           <li>
-            Challenge Link: <a id="visit-link" href="<%= data.challengeLink %>"> Click Here To Visit
+            Title: <%=data.challengeName.name%>
+          </li>
+          <li>
+            Preview Link: <a id="visit-link" href="<%= data.challengeLink %>"> Visit
             </a>
           </li>
           <li>
-            Posted Date: 12/03/2023 G.C
+            <%if(data.rate == "not rated"){%>
+              Rating: <span id="rate-info"> NR </span>
+            <% } else { %>
+            Rating: <span id="rate-info"> <%= data.rate %>/5 </span>
+            <em style="font-size: .8em; margin-left: 1em"> <small>
+            <% if(data.records.length != 1) { %>
+                 [ <%= data.records.length %> Peoples Rated ]
+            <% } else { %>
+                 [ Only <%= data.records.length %> Person Rated ]
+            <% } %>
+            </small> </em> 
+            <% } %>
           </li>
           <% if(typeof userData != "undefined" && data.owner.username == userData.username) { %>
+          
+          <br>
           <div id="edit-delete-ch">
-            <a style="color: yellow" href="/demo/edit-challenge?id=<%= data._id %>"> Edit </a>
-            <button class="del-btn" data-from="<%=challengeDetail.name %>" data-id="<%=data._id%>">
+            <a class="small-btn-peace" style="color: yellow" href="/demo/edit-challenge?id=<%= data._id %>"> Edit </a>
+            <button class="del-btn small-btn-danger" data-from="<%=challengeDetail.name %>" data-id="<%=data._id%>">
               <span style="color: " class="dat"> Delete </span>
             </button>
             <% if(challengeDetail.name == "Other Links"){ %>
             <% } %>
           </div>
+          <% } else if(auth) { %>
+                <form method="post" action="/demo/rateIt">
+                
+
+    <% let hasRated = data.ratedBy.some(a => a == userData.username) %> 
+    
+    <% if(!hasRated){ %>
+    <li id="rate-list">
+    <input 
+      type="text" 
+      name="id"
+      value= <%= data._id %>
+      style="display:none"
+      > 
+    <select name="rate" id="rate-select" required>
+    <option value="" disabled selected hidden> 
+      Choose Rate
+    </option>
+      <option value="5"> ⭐⭐⭐⭐⭐ </option>
+      <option value="4"> ⭐⭐⭐⭐ </option>
+      <option value="3"> ⭐⭐⭐ </option>
+      <option value="2"> ⭐⭐ </option>
+      <option value="1"> ⭐ </option>
+    </select>
+    <input type="submit" value="Rate" class="small-btn-peace" id="rate-btn">
+    <% } else { %>
+      <% let theIndex = data.ratedBy.indexOf(userData.username) %> 
+    <% let theRate = data.records[theIndex] %>
+    <li> You Rated: <%= theRate %></li>
+            <% } %>
           <% } %>
+  </form>
         </ul>
         <hr>
        <% }) %>

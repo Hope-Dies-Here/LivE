@@ -1,8 +1,26 @@
-<div id="home-left">
+<div id="home-left" class="home-div">
   <h2>Group Challenge Page</h2>
-  <p>Lorem qui exercitation laboris nulla ad sit do exercitation sint adipisicing mollit consectetur cupidatat dolore</p>
+<!--   <p>Lorem qui exercitation laboris nulla ad sit do exercitation sint adipisicing mollit consectetur cupidatat dolore</p> -->
+  <p>This is website. You can post your projects and show-off. You can't if you're not a member of group called Illumi... I mean name.Random(). </p>
+  <div>
+    <a href="/demo/challenges">
+      <button class="get-started">
+        Get Started
+      </button>
+    </a>
+  </div>
+  <div id="home-image">
+    <% if(auth){ %>
+    <img src="/img/1681620721445_resized.jpg"/>
+    <p data-value='Wellcome <%= userData.name %> ' data-initial='Wellcome <%= userData.name %> ' class="insult-praise" id="praise">Wellcome <%=userData.name%> </p>
+    <% } else { %>
+    <img src="/img/1686639225746.jpg"/>
+    <p class="insult-praise" id="insult"> <span id="L">Lo</span>oooook a GUEST .. <a href="/demo/users/login" id="insult-a">Login</a></p>
+    <% } %>
+      
+  </div>
 </div>
-<div id="home-right">
+<div id="home-right"  class="home-div">
   <h2 id="logged-user"> 
     <%= typeof username != "undefined" ? username : "GUEST" %>
   </h2>

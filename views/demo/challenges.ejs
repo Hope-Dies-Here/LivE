@@ -6,12 +6,13 @@
     <% db.forEach(ch => { %>
       <div class="card">
         <div class="img">
-          <img src="https://picsum.photos/20/30?random=<%= i %>" alt="" />
+          <img src="/img/new-img/<%=i%>.jpg" alt="" />
           <% i++ %>
         </div>
         <div class="textBox">
           <div class="textContent">
-            <p class="h1"><span><%= ch.name %> </span></p>
+            <p id="ch-name" class="h1"><span><%= ch.name %> </span> 
+            </p>
             <% if(ch.status == "Open") { %>
               <sub style="color: green"> <%= ch.status %> </sub>
             <% } else if(ch.status == "Pending") { %>

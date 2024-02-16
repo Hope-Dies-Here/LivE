@@ -12,7 +12,7 @@ const bodyParser = require("body-parser");
 const app = express();
 // const router = require("./Router/router.js")
 const demo = require("./Router/demo.js");
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 require("dotenv").config();
 
 // const dbString = process.env.DB_STRING
@@ -75,6 +75,34 @@ app.use(express.static(__dirname + "/public/"));
 // app.use("/", router)
 app.use("/demo", demo);
 
-app.get("/", (req, res) => {
+app.get("/*", (req, res) => {
   res.redirect("/demo");
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+app.get("/secret-tunnel", (req, res) => {
+  res.send("<em href='ff'>so you have found the secret tunnel<em> <a href='/whooopa'> click here to start your journey </a>")
+})
+
+app.get("/whooopa", (req, res) => {
+  res.send("<h1 style='color: red, font-size:3rem'> YOU'VE BEEN HACKED </h1>")
+})

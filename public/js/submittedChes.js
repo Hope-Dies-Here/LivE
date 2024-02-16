@@ -8,3 +8,13 @@ buttons.forEach(btn => {
   })
   
 })
+
+const stars = document.querySelectorAll(".star")
+const label = document.querySelector("label")
+let clicked = false
+stars.forEach(star => {
+  star.addEventListener("click", (e) => {
+    const item = e.target
+    item.nextElementSibling.style = `background: url("/img/st.png") no-repeat center center; background-size: contain;`
+  })
+})

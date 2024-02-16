@@ -18,8 +18,12 @@
       <div class="profile-projects">
         <!-- <img src="https://picsum.photos/20/30?random=<%= /* i */ %>" alt="" /> -->
         <%i++%>
-        <p><%= project.titleName %></p>
-        <p>⭐⭐</p>
+        <p><%= project.challengeName.name %></p>
+          <% if(project.rate == "not rated") { %>
+        <p>NR</p>
+        <% } else { %>
+        <p><%= project.rate %></p>
+        <% } %>
         <a href="<%= project.challengeLink %>">Visit</a>
       </div>
       <% }) %>

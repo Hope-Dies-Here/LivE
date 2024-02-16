@@ -1,10 +1,13 @@
 <h2>Challenges</h2>
+    <% if(suc_msg != "") { %>
+        <p class="alert-suc"><%= suc_msg %></p>
+      <% } %>
 <% chs.forEach(challenge => { %>
   <div style="display: flex; align-items: center; gap: 2em">
     <form>
       <p> <%= challenge.name %> </p>
     </form>
-    <form method="post" action="/demo/sup/del-ch/<%= challenge._id %>">
+    <form method="post" action="/demo/sup/del-ch?id=<%= challenge._id %>">
       <input type="submit" value="Delete">
     </form>
     <form method="get" action="/demo/sup/edit-ch/<%= challenge._id %>">

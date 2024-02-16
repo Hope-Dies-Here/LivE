@@ -7,7 +7,7 @@ body {
   /* height: 780px; */
   margin: 0;
   padding: 60px 30px;
-  background-color: rgb(206, 206, 206);
+  background-color: red;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,0 +1,32 @@
+<div>
+  <h1>Damn</h1>
+
+  
+</div>
+<div>
+  <% db.forEach(data => { %>
+  <form method="post" action="/demo/rateIt">
+    <p> Name:  <%= data.name %> </p>
+    <p> Rating: <%= data.rate %> </p>
+    <sup> <%= data.records.length %> Peoples Rated</sup> <br>
+    <input 
+      type="text" 
+      name="id"
+      value= <%= data._id %>
+      style="display:none"
+      > 
+    <select name="rate">
+    <option value="" disabled selected hidden> 
+      Choose Rate
+    </option>
+      <option value="5"> ⭐⭐⭐⭐⭐ </option>
+      <option value="4"> ⭐⭐⭐⭐ </option>
+      <option value="3"> ⭐⭐⭐ </option>
+      <option value="2"> ⭐⭐ </option>
+      <option value="1"> ⭐ </option>
+    </select>
+    <input type="submit" value="Rate">
+  </form>
+    <hr>
+  <% }) %>
+</div>
