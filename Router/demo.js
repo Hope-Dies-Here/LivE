@@ -44,7 +44,6 @@ demo.get("/", (req, res) => {
 
 //profile page
 demo.get("/profile", checkAuth, async (req, res) => {
-  console.log("jquerybby")
   try {
     const curUser = await users.findOne({ username: req.session.username });
     
