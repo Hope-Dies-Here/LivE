@@ -31,14 +31,18 @@
             </a> 
           </li>
           <li>
-            Title: <%=data.challengeName.name%>
+          <% if(data.challengeName.name == "Other Links") { %>
+            Title: <%= data.titleName %>
+        <% } else { %>
+            Title: <%=data.challengeName.name %>
+        <% } %>
           </li>
           <li>
             Preview Link: <a id="visit-link" href="<%= data.challengeLink %>"> Visit
             </a>
           </li>
           <li>
-            <%if(data.rate == "not rated"){%>
+            <%if(data.rate == "not rated" || data.rate == "undefined"){%>
               Rating: <span id="rate-info"> NR </span>
             <% } else { %>
             Rating: <span id="rate-info"> <%= data.rate %>/5 </span>

@@ -832,6 +832,9 @@ ul {
         border-radius: 0;
         box-shadow: none;
     }
+    #leaderboard{
+      display: none;
+    }
     .navbar {
         poosition: fixed;
         top: 0;
@@ -1198,9 +1201,11 @@ ul {
     #rate-list {
         position: absolute;
         top: 25%;
-        right: 5%;
+        right: 0%;
+        padding-right: .5rem;
         display: grid;
         gap: 0.25rem;
+        baackground-color: red!important;
     }
     #rate-select {
         padding: 0.25rem 0.5rem;
